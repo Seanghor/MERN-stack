@@ -1,7 +1,14 @@
 import { Application, NextFunction, Router } from "express";
-import items from './items/index'
+import tasks from './tasks/index'
+import users from './users/index'
+import auth from './auth/index'
+import isAuth from "../middleware/auth";
+
 export default (app: Application) => {
-    app.use("/api/v1/items", items());
+    app.use("/api/v1/tasks", isAuth, tasks())
+    app.use("/api/v1/users", users())
+    app.use("/api/v1/auth", auth())
+
 
 
 
