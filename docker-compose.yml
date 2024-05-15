@@ -1,0 +1,20 @@
+version: "3.9"
+name: crud-api
+services:
+  crud-api:
+    image: crud-api_image
+    container_name: crud-api_container
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    env_file: ./.env
+    ports:
+      - "${PORT}:${PORT}"
+    command: yarn start
+    networks:
+      - mern-network
+networks:
+  mern-network:
+    driver: bridge
